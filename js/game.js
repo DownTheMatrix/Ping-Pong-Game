@@ -25,6 +25,10 @@ const paddle_thickness = 10;
 // AI
 let opponentIq = 15;
 
+// Players names
+let player1Name = "Guest Player";
+let player2Name = "HAL 9000";
+
 // Calculate the mouse position
 function calculateMousePosition(evt) {
     const rect = canvas.getBoundingClientRect();
@@ -51,7 +55,7 @@ function ballReset() {
 
 // Function handleMouseClick()
 function handleMouseClick(evt) {
-    if(showingWinScreen) {
+    if (showingWinScreen) {
         player1Score = 0;
         player2Score = 0;
         showingWinScreen = false;
@@ -157,10 +161,10 @@ function drawEverything() {
     // Show message on game won
     if (showingWinScreen) {
         canvasContext.fillStyle = '#fff';
-        if(player1Score >= winningScore) {
-            canvasContext.fillText("Left player won!", 350, 200);
+        if (player1Score >= winningScore) {
+            canvasContext.fillText(player1Name + " won!", 350, 200);
         } else if (player2Score >= winningScore) {
-            canvasContext.fillText("Right player won!", 350, 200);
+            canvasContext.fillText(player2Name + " won!", 350, 200);
         }
         canvasContext.fillText("Click to continue", 350, 500);
         return;
@@ -179,9 +183,9 @@ function drawEverything() {
 
     // Draw score
     canvasContext.font = '18px Arial';
-    canvasContext.fillText('Player 1', 80, 130);
+    canvasContext.fillText(player1Name, 80, 130);
     canvasContext.fillText(player1Score, 100, 100);
-    canvasContext.fillText('HAL 9000', canvas.width - 130, 130);
+    canvasContext.fillText(player2Name, canvas.width - 130, 130);
     canvasContext.fillText(player2Score, canvas.width - 100, 100);
 }
 
