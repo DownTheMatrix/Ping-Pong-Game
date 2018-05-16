@@ -150,7 +150,13 @@ function drawEverything() {
     // Show message on game won
     if (showingWinScreen) {
         canvasContext.fillStyle = '#fff';
-        canvasContext.fillText("Click to continue", canvas.width / 2 - 100, canvas.height / 2);
+        if(player1Score >= winningScore) {
+            canvasContext.fillText("Left player won!", 350, 200);
+        } else if (player2Score >= winningScore) {
+            canvasContext.fillText("Right player won!", 350, 200);
+        }
+
+        canvasContext.fillText("Click to continue", 350, 500);
         return;
     }
 
@@ -164,7 +170,7 @@ function drawEverything() {
     colorCircle(ballX, ballY, 10, '#fff');
 
     // Draw score
-    canvasContext.font = '24px Arial';
+    canvasContext.font = '18px Arial';
     canvasContext.fillText('Player 1', 80, 130);
     canvasContext.fillText(player1Score, 100, 100);
     canvasContext.fillText('HAL 9000', canvas.width - 130, 130);
