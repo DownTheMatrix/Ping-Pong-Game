@@ -41,14 +41,21 @@ function calculateMousePosition(evt) {
 function ballReset() {
     // Check winning condition
     if (player1Score >= winningScore || player2Score >= winningScore) {
-        player1Score = 0;
-        player2Score = 0;
         showingWinScreen = true;
     }
 
     ballSpeedX = -ballSpeedX;
     ballX = canvas.width / 2;
     ballY = canvas.height / 2;
+}
+
+// Function handleMouseClick()
+function handleMouseClick(evt) {
+    if(showingWinScreen) {
+        player1Score = 0;
+        player2Score = 0;
+        showingWinScreen = false;
+    }
 }
 
 // Wait for the whole content to be loaded and initialize
@@ -64,6 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
         moveEverything();
         drawEverything();
     }, 1000 / fps);
+
+    // Listen for mouse down event
+    canvas.addEventListener('mousedown', handleMouseClick);
 
     // Listen for mouse movement on canvas
     canvas.addEventListener('mousemove',
