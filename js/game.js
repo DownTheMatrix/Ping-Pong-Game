@@ -141,6 +141,13 @@ function moveEverything() {
     }
 }
 
+// Draw mid net
+function drawNet() {
+    for (let i = 0; i < canvas.height; i += 40) {
+        colorRect(canvas.width / 2 - 1, i, 2, 20, '#fff');
+    }
+}
+
 // Draw elements
 function drawEverything() {
 
@@ -155,10 +162,11 @@ function drawEverything() {
         } else if (player2Score >= winningScore) {
             canvasContext.fillText("Right player won!", 350, 200);
         }
-
         canvasContext.fillText("Click to continue", 350, 500);
         return;
     }
+
+    drawNet();
 
     // Draw left side paddle
     colorRect(0, paddle1Y, paddle_thickness, paddle_height, '#fff');
