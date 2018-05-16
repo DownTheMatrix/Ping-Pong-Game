@@ -11,8 +11,10 @@ let ballSpeedY = 4;
 // Score
 let player1Score = 0;
 let player2Score = 0;
-
 const winningScore = 3;
+
+// Pause when game is won
+let showingWinScreen = false;
 
 // Paddles
 let paddle1Y = 250;
@@ -37,9 +39,11 @@ function calculateMousePosition(evt) {
 
 // Reset ball position if misses paddle
 function ballReset() {
+    // Check winning condition
     if (player1Score >= winningScore || player2Score >= winningScore) {
         player1Score = 0;
         player2Score = 0;
+        showingWinScreen = true;
     }
 
     ballSpeedX = -ballSpeedX;
@@ -48,7 +52,7 @@ function ballReset() {
 }
 
 // Wait for the whole content to be loaded and initialize
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     canvas = document.querySelector('#game-canvas');
     canvasContext = canvas.getContext('2d');
 
@@ -56,34 +60,37 @@ document.addEventListener('DOMContentLoaded', function(){
     let fps = 30;
 
     // Redraw the screen
-    setInterval(function() {
+    setInterval(function () {
         moveEverything();
         drawEverything();
     }, 1000 / fps);
 
     // Listen for mouse movement on canvas
-    canvas.addEventListener('mousemove', 
-        function(evt) {
+    canvas.addEventListener('mousemove',
+        function (evt) {
             let mousePos = calculateMousePosition(evt);
             paddle1Y = mousePos.y - (paddle_height / 2);
         })
-    });
+});
 
-    // AI logic
-    function computerMovement() {
-        const paddle2YCenter = paddle2Y + (paddle_height / 2);
-        if (paddle2YCenter < ballY - 35) {
-            paddle2Y += opponentIq;
+// AI logic
+function computerMovement() {
+    const paddle2YCenter = paddle2Y + (paddle_height / 2);
+    if (paddle2YCenter < ballY - 35) {
+        paddle2Y += opponentIq;
 
         // Ignore chasing the ball while it's within 35 px above or below the paddle center position
-        } else if (paddle2YCenter > ballY + 35) {
-            paddle2Y -= opponentIq;
-        }
+    } else if (paddle2YCenter > ballY + 35) {
+        paddle2Y -= opponentIq;
     }
+}
 
 // Move the elements on canvas
 function moveEverything() {
-     // AI logic
+    if (showingWinScreen) {
+        return;
+    }
+    // AI logic
     computerMovement();
 
     ballX += ballSpeedX;
@@ -127,9 +134,16 @@ function moveEverything() {
 // Draw elements
 function drawEverything() {
 
-     // Draw canvas
+    // Draw canvas
     colorRect(0, 0, canvas.width, canvas.height, '#000');
-    
+
+    // Show message on game won
+    if (showingWinScreen) {
+        canvasContext.fillStyle = '#fff';
+        canvasContext.fillText("Click to continue", canvas.width / 2 - 100, canvas.height / 2);
+        return;
+    }
+
     // Draw left side paddle
     colorRect(0, paddle1Y, paddle_thickness, paddle_height, '#fff');
 
