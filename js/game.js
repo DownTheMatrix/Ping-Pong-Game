@@ -11,7 +11,8 @@ let ballSpeedY = 4;
 // Score
 let player1Score = 0;
 let player2Score = 0;
-let winningScore = 3;
+
+const winningScore = 3;
 
 // Paddles
 let paddle1Y = 250;
@@ -92,8 +93,8 @@ function moveEverything() {
             ballSpeedY = deltaY * 0.35;
 
         } else {
-            ballReset();
             player2Score++;
+            ballReset();
         }
     }
 
@@ -106,8 +107,8 @@ function moveEverything() {
             ballSpeedY = deltaY * 0.35;
 
         } else {
-            ballReset();
             player1Score++;
+            ballReset();
         }
     }
     if (ballY < 0) {
