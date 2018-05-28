@@ -11,5 +11,144 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    width: 800px;
+}
+
+/* Modal */
+.md-content {
+	height: 100vh;
+}
+
+.md-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 80%;
+	max-width: 100%;
+	min-width: 100%;
+	height: auto;
+	z-index: 2000;
+	display: none;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	font-family: 'Open Sans', sans-serif;
+}
+
+.md-modal ul {
+	list-style-type: none;
+}
+
+.mode-selection {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr;
+}
+
+.md-select {
+	padding: 0.8em;
+	border-radius: 30%;
+	cursor: pointer;
+}
+
+.md-show {
+	display: block;
+}
+
+.md-content {
+	color: #fff;
+	background: rgb(93, 106, 161);
+	position: relative;
+	border-radius: 3px;
+	margin: 0 auto;
+}
+
+.md-content h3 {
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+	font-size: 2.4em;
+	font-weight: 300;
+	opacity: 0.8;
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 3px 3px 0 0;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.md-content>div {
+	padding: 15px 40px 30px;
+	margin: 0;
+	font-weight: 300;
+	font-size: 1.15em;
+}
+
+.md-content>div p {
+	margin: 0;
+	padding: 10px 0;
+}
+
+.md-content>div ul {
+	margin: 0;
+	padding: 0 0 30px 20px;
+}
+
+.md-content>div ul li {
+	padding: 5px 0;
+}
+
+.md-content button {
+	display: block;
+	margin: 0 auto;
+	font-size: 0.8em;
+}
+
+.md-effect-7 {
+	top: 0;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.md-effect-7 .md-content {
+	-webkit-transform: translateY(-200%);
+	-moz-transform: translateY(-200%);
+	-ms-transform: translateY(-200%);
+	transform: translateY(-200%);
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	transition: all .3s;
+	opacity: 0;
+}
+
+.md-show.md-effect-7 .md-content {
+	-webkit-transform: translateY(0%);
+	-moz-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	transform: translateY(0%);
+	border-radius: 0 0 3px 3px;
+	opacity: 1;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 767px) {
+	canvas {
+		max-width: 360px;
+		min-height: 450px;
+	}
+	.mode-selection {
+		grid-template-columns: repeat(3, 25%);
+	}
+	.mode-img {
+		width: 10%;
+		height: 10%;
+	}
+	#mode-heading,
+	.md-content h3 {
+		font-size: 24px;
+	}
+	.md-story p {
+		font-size: 16px;
+	}
 }

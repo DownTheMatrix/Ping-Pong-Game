@@ -1,3 +1,14 @@
+/* Modal */
+document.addEventListener('DOMContentLoaded', showModal);
+
+function showModal() {
+    const modal = document.querySelector('.md-modal');
+    modal.classList.add('md-show');
+}
+
+
+
+
 // Canvas and canvas context
 let canvas;
 let canvasContext;
@@ -11,7 +22,7 @@ let ballSpeedY = 4;
 // Score
 let player1Score = 0;
 let player2Score = 0;
-const winningScore = 3;
+const winningScore = 15;
 
 // Pause when game is won
 let showingWinScreen = false;
