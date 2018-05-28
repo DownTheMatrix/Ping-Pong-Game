@@ -55,6 +55,10 @@ html, body {
 	display: block;
 }
 
+.md-hide {
+	display: none;
+}
+
 .md-content {
 	color: #fff;
 	background: rgb(93, 106, 161);
