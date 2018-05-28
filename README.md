@@ -8,3 +8,4 @@ A simple Ping-Pong-Game application using Vanilla JS.
 + Improve AI
 + Add extra features to make the game more appealing (improve the score system)
 + Improve the game graphics
++ Refactor the code using classes (OOP)
