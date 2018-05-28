@@ -6,7 +6,13 @@ function showModal() {
     modal.classList.add('md-show');
 }
 
-
+const btn = document.querySelectorAll('.md-select');
+for (let i = 0; i < btn.length; i++) {
+    btn[i].addEventListener('click', function() {
+        const modal = document.querySelector('.md-modal');
+        modal.classList.add('md-hide');
+    });
+}
 
 
 // Canvas and canvas context
