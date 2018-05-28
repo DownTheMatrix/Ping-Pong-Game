@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,41 @@
     <title>Tennis Game</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<canvas id="game-canvas" width="800" height="600"></canvas>
+    <!-- Starting Modal -->
+    <div class="md-modal md-effect-7" id="modal-7">
+        <div class="md-content">
+            <h3>Welcome to Ping-Pong!</h3>
+            <div class="md-story">
+                <p>This is a simple Tennis Game app entirely made using Vanilla JavaScript. Your goal is to beat your opponent by 
+                    scoring 15 points. Every time you catch the ball with your paddle and your opponent doesn't, you score 1 point. Otherwise, your opponent does.
+                    To move your paddle, simply use the mouse up and down or the arrow keys. Good luck!
+                </p>
+                <h3 id="hero-heading">Choose The Difficulty Mode</h3>
+                <div class="mode-selection">
+                    <div class="hero-img">
+                        <img src="#" alt="easy">
+                        <button class="md-select" id="easy-md">Easy</button>
+                    </div>
+                    <div class="hero-img">
+                        <img src="#" alt="normal">
+                        <button class="md-select" id="normal-md">Normal</button> 
+                    </div>
+                    <div class="hero-img">
+                        <img src="#" alt="hard">
+                        <button class="md-select" id="hard-md">Hard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Canvas -->
+    <canvas id="game-canvas" width="800" height="600"></canvas>
 
-<script src="js/game.js"></script>
+    <script src="js/game.js"></script>
 </body>
+
 </html>
