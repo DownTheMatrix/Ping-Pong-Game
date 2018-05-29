@@ -6,15 +6,6 @@ function showModal() {
     modal.classList.add('md-show');
 }
 
-const btn = document.querySelectorAll('.md-select');
-for (let i = 0; i < btn.length; i++) {
-    btn[i].addEventListener('click', function() {
-        const modal = document.querySelector('.md-modal');
-        modal.classList.add('md-hide');
-    });
-}
-
-
 // Canvas and canvas context
 let canvas;
 let canvasContext;
@@ -38,9 +29,6 @@ let paddle1Y = 250;
 let paddle2Y = 250;
 const paddle_height = 100;
 const paddle_thickness = 10;
-
-// AI
-let opponentIq = 15;
 
 // Players names
 let player1Name = "Guest Player";
@@ -104,7 +92,41 @@ document.addEventListener('DOMContentLoaded', function () {
         })
 });
 
-// AI logic
+/* AI Logic */
+let opponentIq = 0;
+
+const easyBtn = document.querySelector('#easy-md');
+easyBtn.addEventListener('click', function() {
+    opponentIq = 5;
+    const modal = document.querySelector('.md-modal');
+    modal.classList.add('md-hide');
+});
+
+const normalBtn = document.querySelector('#normal-md');
+normalBtn.addEventListener('click', function() {
+    opponentIq = 10;
+    const modal = document.querySelector('.md-modal');
+    modal.classList.add('md-hide');
+});
+
+const hardBtn = document.querySelector('#hard-md');
+hardBtn.addEventListener('click', function() {
+    opponentIq = 15;
+    const modal = document.querySelector('.md-modal');
+    modal.classList.add('md-hide');
+});
+
+function setDifficulty() {
+    if (ai[0]["difficulty"] === "easy") {
+        opponentIq = 5;
+    } else if (ai[1]["difficulty"] === "normal") {
+        opponentIq = 10;
+    } else {
+        opponentIq = 15;
+    }
+}
+
+// AI Difficulty
 function computerMovement() {
     const paddle2YCenter = paddle2Y + (paddle_height / 2);
     if (paddle2YCenter < ballY - 35) {
@@ -116,7 +138,7 @@ function computerMovement() {
     }
 }
 
-// Move the elements on canvas
+/* Game Core */
 function moveEverything() {
     if (showingWinScreen) {
         return;
@@ -162,7 +184,7 @@ function moveEverything() {
     }
 }
 
-// Draw mid net
+/* Draw Canvas */
 function drawNet() {
     for (let i = 0; i < canvas.height; i += 40) {
         colorRect(canvas.width / 2 - 1, i, 2, 20, '#fff');
@@ -206,7 +228,7 @@ function drawEverything() {
     canvasContext.fillText(player2Score, canvas.width - 100, 100);
 }
 
-// Define the ball
+/* Ball */
 function colorCircle(centerX, centerY, radius, drawColor) {
     canvasContext.fillStyle = drawColor;
     canvasContext.beginPath();
@@ -214,7 +236,7 @@ function colorCircle(centerX, centerY, radius, drawColor) {
     canvasContext.fill();
 }
 
-// Define the colors
+/* Colors */
 function colorRect(leftX, topY, width, height, drawColor) {
     canvasContext.fillStyle = drawColor;
     canvasContext.fillRect(leftX, topY, width, height);
